@@ -1,0 +1,47 @@
+{
+    "461262409839935490": {
+        "notify": true,
+        "settings": {
+            "channel": 882037874806104064,
+            "role_streamer": 0,
+            "role_receive": 0
+        },
+        "streamers": {
+            "teban19": {
+                "user_id": 384187712309035009,
+                "message": "",
+                "sent": false
+            },
+            "junios_01": {
+                "user_id": 529824993325088778,
+                "message": "",
+                "sent": false
+            }
+        }
+    },
+    "827282235690319873": {
+        "notify": true,
+        "settings": {
+            "channel": 827282236134391810,
+            "role_streamer": 880242494334464051,
+            "role_receive": 1092329420255141889
+        },
+        "streamers": {
+            "arrozydesgracias": {
+                "user_id": 0,
+                "message": "",
+                "sent": false
+            },
+            "elded": {
+                "user_id": 0,
+                "message": "**{display_name}** esta en vivo jugando **{game_name}**!",
+                "sent": false
+            },
+            "topmanias10": {
+                "user_id": 0,
+                "message": null,
+                "sent": false
+            }
+        }
+    }
+}
