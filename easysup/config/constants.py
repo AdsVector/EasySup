@@ -1,12 +1,11 @@
 import os
 
 
-TW_CLIENT_ID = "t29lvsfrateaygfdt3gm6s3vbi8h3w"
-TW_CLIENT_SECRET = "b1igkh59vm2r1g0mvupnvyzb0qmjnw"
+TW_CLIENT_ID = os.environ['TWICTH_CLIENT_ID']
+TW_CLIENT_SECRET = os.environ['TWITCH_CLIENT_SECRET']
 
 
-#BOT_TOKEN = os.environ['DISCORD_TOKEN']
-BOT_TOKEN = "OTU0MzQ3NTgyOTA0MjA1MzYz.GjAvob.rVS5jOa2t0gJLcEzz78MwR7g1Xw85utPXOFFU0"
+BOT_TOKEN = os.environ['DISCORD_TOKEN']
 BOT_PREFIX = "$"
 
 
