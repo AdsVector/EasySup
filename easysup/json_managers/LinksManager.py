@@ -1,4 +1,4 @@
-from easysup.manager.JsonFileManager import JSON_Manager
+from easysup.json_managers.JsonFileManager import JSON_Manager
 
 class LinksManager(JSON_Manager):
     def __init__(self, file_path):

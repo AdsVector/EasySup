@@ -1,17 +1,16 @@
 import discord 
 from discord.ext import tasks, commands
 
-import random
 from typing import Optional
-from easysup.config import config
+from ..config.constants import STREAMERS_PATH
 from easysup.twitch_api_comm import GetStreamData, GetUserData, GetTotalFollowers
 from easysup.tools.embeds import EmbedNotification, EmbedUserData
-from easysup.manager.JsonFileManager import JSON_Manager
+from easysup.json_managers.JsonFileManager import JSON_Manager
 
 class Streamers(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-        self.manager = JSON_Manager(config.STREAMERS_PATH)
+        self.manager = JSON_Manager(STREAMERS_PATH)
        
 
     @commands.command(name='add', aliases=['add-streamer'], pass_context=True)

@@ -2,14 +2,14 @@ import os, asyncio
 import discord
 from discord.ext import commands
 from easysup.help_command import CustomHelpCommand
-from easysup.config import config
+from easysup.config.constants import BOT_PREFIX, BOT_TOKEN
 from webserver import keep_alive
 
 
 class EasySup(commands.Bot):
 
 	def __init__(self) -> None:
-		super().__init__(command_prefix=config.BOT_PREFIX,
+		super().__init__(command_prefix=BOT_PREFIX,
 		                 help_command=CustomHelpCommand(),
 		                 intents=discord.Intents.all())
 
@@ -38,7 +38,7 @@ bot = EasySup()
 
 async def main():
 	async with bot:
-		await bot.start(config.BOT_TOKEN)
+		await bot.start(BOT_TOKEN)
 
 
 asyncio.run(main())

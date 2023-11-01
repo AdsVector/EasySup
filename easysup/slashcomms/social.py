@@ -3,9 +3,9 @@ from discord import app_commands
 from discord.ui import View, Button
 
 from typing import Optional
-from easysup.manager.LinksManager import LinksManager
-from easysup.config import config
-from easysup.linkutils import identify_emoji_url, is_valid_url
+from easysup.json_managers.LinksManager import LinksManager
+from easysup.config.constants import TIMEOUT_MESSAGE, SOCIALNETWORKS_PATH
+from easysup.utils.linkutils import identify_emoji_url, is_valid_url
 
 class Dropdown(discord.ui.Select):
     def __init__(self, options, min:int = 1, max:int = 1):
@@ -32,14 +32,14 @@ class DropdownView(discord.ui.View):
         try:
             self.clear_items()
             if not self.selected:  # Verificar si se ha seleccionado un valor
-                await self.message.edit(content=config.TIMEOUT_MESSAGE, view=None)
+                await self.message.edit(content=TIMEOUT_MESSAGE, view=None)
         except Exception as e:
             print(f"TimeOut <> An error occurred: {e}")
 
 class Links(app_commands.Group):
     def __init__(self) -> None:
         super().__init__(name="links", description="Añadir, eliminar y mostrar tu enlances a redes sociales")
-        self.manager = LinksManager(config.SOCIALNETWORKS_PATH)
+        self.manager = LinksManager(SOCIALNETWORKS_PATH)
 
     @app_commands.command(name="add", description="Añade nuevos vínculos de a tu perfil.")
     @app_commands.describe(user="Usuario a trabajar", name="Nombre de la página", url="URL de vuestra página.")

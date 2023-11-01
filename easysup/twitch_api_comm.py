@@ -1,19 +1,17 @@
-import os
 import requests
 from urllib.parse import urlparse
+from easysup.config.constants import TW_CLIENT_ID, TW_CLIENT_SECRET
 
 # Authentication with Twitch API.
-client_id = os.environ['TWICTH_CLIENT_ID']
-client_secret = os.environ['TWITCH_CLIENT_SECRET']
 body = {
- 'client_id': client_id,
- 'client_secret': client_secret,
+ 'client_id': TW_CLIENT_ID,
+ 'client_secret': TW_CLIENT_SECRET,
  "grant_type": 'client_credentials'
 }
 r = requests.post('https://id.twitch.tv/oauth2/token', body)
 keys = r.json()
 headers = {
- 'Client-ID': client_id,
+ 'Client-ID': TW_CLIENT_ID,
  'Authorization': 'Bearer ' + keys['access_token']
 }
 

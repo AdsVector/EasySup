@@ -1,11 +1,11 @@
 import discord
 from datetime import datetime, timezone
-from easysup.config import config
+from easysup.config import constants
 
 # Create an embed message with the twitch user information
 def EmbedNotification(streamer_data, user_data):
     user_login    = streamer_data['user_login']
-    twitch_url    = config.TWITCH_URL.format(user_login)
+    twitch_url    = constants.TWITCH_URL.format(user_login)
     capture_url   = streamer_data['thumbnail_url'].format(width=960, height=540)
     game_name     = streamer_data['game_name']
     viewer_count  = streamer_data.get('viewer_count', 0)
@@ -16,8 +16,8 @@ def EmbedNotification(streamer_data, user_data):
     stream_title = str(streamer_data['title']).replace("||", "| |")
 
     embed = discord.Embed(title=stream_title, url=twitch_url, color=0x6441a5)
-    embed.add_field(name=config.INFO_GAME, value=game_name)
-    embed.add_field(name=config.INFO_VIEWERS, value=viewer_count)
+    embed.add_field(name=constants.INFO_GAME, value=game_name)
+    embed.add_field(name=constants.INFO_VIEWERS, value=viewer_count)
     embed.set_image(url=capture_url)
     embed.set_author(name=display_name,  icon_url=avatar_url, url=twitch_url)
     embed.timestamp = datetime.utcnow()
@@ -26,7 +26,7 @@ def EmbedNotification(streamer_data, user_data):
 
 def EmbedUserData(user_data):
     user_login = user_data['login']
-    twitch_url = config.TWITCH_URL.format(user_login)
+    twitch_url = constants.TWITCH_URL.format(user_login)
 
     total_followers = user_data['followers']
 
@@ -39,8 +39,8 @@ def EmbedUserData(user_data):
                           url=twitch_url, color=0x6441a5,
                           description=user_data['description'])
     embed.set_thumbnail(url=user_data["profile_image_url"])
-    embed.add_field(name=config.INFO_CREATED_AT, value=created_at)
-    embed.add_field(name=config.INFO_FOLLOWERS,  value=total_followers)
+    embed.add_field(name=constants.INFO_CREATED_AT, value=created_at)
+    embed.add_field(name=constants.INFO_FOLLOWERS,  value=total_followers)
     #embed.set_author(name="Twitch User",  icon_url=user_data["profile_image_url"], url=twitch_url)
 
     return embed

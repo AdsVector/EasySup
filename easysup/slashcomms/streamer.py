@@ -5,16 +5,16 @@ from discord.ext.commands import has_permissions, MissingPermissions
 
 import random
 from typing import Optional
-from easysup.config import config
-from easysup.utils import format_message
+from easysup.config.constants import STREAMERS_PATH, WATCH_BUTTON, DEFAULT_MSG, TWITCH_URL
+from easysup.utils.utils import format_message
 from easysup.twitch_api_comm import GetStreamData, GetUserData, GetTotalFollowers
 from easysup.tools.embeds import EmbedNotification, EmbedUserData
-from easysup.manager.JsonFileManager import JSON_Manager
+from easysup.json_managers.JsonFileManager import JSON_Manager
 
 class Streamer(app_commands.Group):
     def __init__(self) -> None:
         super().__init__(name="streamer", description="Puedes añadir o eliminar streamer en tu canal.")
-        self.manager = JSON_Manager(config.STREAMERS_PATH)
+        self.manager = JSON_Manager(STREAMERS_PATH)
 
     @app_commands.command(name="add", description="Añade un nuevo streamer para recibir notificaciones.")
     @app_commands.describe(twitch_name="Nombre del streamer. Solo Twitch!", 
@@ -100,7 +100,7 @@ class Streamer(app_commands.Group):
             streamers = []
             streamers.append(username)
             streamer_data = GetStreamData(streamers)[0]
-            url_twitch = config.TWITCH_URL.format(user_data['login'])
+            url_twitch = TWITCH_URL.format(user_data['login'])
             
             if streamer_data['is_live'] is False:
                 user_data["followers"] = GetTotalFollowers(user_data['id'])
@@ -114,12 +114,12 @@ class Streamer(app_commands.Group):
                 await interaction.response.send_message(embed=embed, content=msg,  view=view)
                 return
             
-            msg     = config.DEFAULT_MSG[random.randint(0, 5)]  
+            msg     = DEFAULT_MSG[random.randint(0, 5)]  
             message = format_message(msg=msg, data=streamer_data)
             embed   = EmbedNotification(streamer_data, user_data)
             view    = discord.ui.View() 
             view.add_item(discord.ui.Button(
-                                    label=config.WATCH_BUTTON,
+                                    label=WATCH_BUTTON,
                                     style=discord.ButtonStyle.link,
                                     url=url_twitch))
             await interaction.response.send_message(embed=embed, content=message,  view=view)

@@ -1,7 +1,7 @@
 
 from enum import Enum
 from urllib.parse import urlparse
-from easysup.config.config import emojis
+from easysup.config.constants import EMOJIS
 
 class Sites(Enum):
     Unknown = 0
@@ -54,25 +54,25 @@ def identify_emoji_url(url):
         return None
 
     if "https://www.youtube.com" in url:
-        return emojis.YOUTUBE
+        return EMOJIS["YOUTUBE"]
 
     if "https://open.spotify.com/artist" in url:
-        return emojis.SPOTIFY
+        return EMOJIS["SPOTIFY"]
 
     if "https://twitter.com/" in url:
-        return emojis.TWITTER
+        return EMOJIS["TWITTER"]
 
     if "soundcloud.com/" in url:
-        return emojis.SOUNCLOUD
+        return EMOJIS["SOUNCLOUD"]
     
     if "https://www.twitch.tv/" in url:
-        return emojis.TWITCH
+        return EMOJIS["TWITCH"]
     
     if "https://www.tiktok.com/@" in url:
-        return emojis.TIKTOK
+        return EMOJIS["TIKTOK"]
 
     if "https://github.com/" in url:
-        return emojis.GITHUB
+        return EMOJIS["GITHUB"]
     
     if "https://www.instagram.com/" in url:
         return emojis.INSTAGRAM

@@ -3,13 +3,13 @@ from discord import app_commands
 from discord.ext import tasks, commands
 from discord.ext.commands import has_permissions, MissingPermissions
 
-from easysup.manager.JsonFileManager import JSON_Manager
-from easysup.config import config
+from easysup.json_managers.JsonFileManager import JSON_Manager
+from easysup.config.constants import STREAMERS_PATH
 
 class Setup(app_commands.Group):
     def __init__(self) -> None:
         super().__init__(name="setup", description="Puedes configurar el canal y roles para las notificaciones.")
-        self.manager = JSON_Manager(config.STREAMERS_PATH)
+        self.manager = JSON_Manager(STREAMERS_PATH)
 
     @app_commands.command(name="channel", description="Establezca el canal donde se enviarán las notificaciones.")
     @app_commands.checks.has_permissions(administrator=True)

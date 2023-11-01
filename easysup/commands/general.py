@@ -1,6 +1,6 @@
 import discord
 from discord.ext import commands
-from easysup.config import config
+from easysup.config import constants
 
 class ReceiveButtons(discord.ui.View):
     def __init__(self, *, timeout=180):
@@ -29,7 +29,7 @@ class ReceiveButtons(discord.ui.View):
     async def on_timeout(self):
         try:
             self.clear_items()
-            await self.message.edit(content=config.TIMEOUT_MESSAGE, view=None)
+            await self.message.edit(content=constants.TIMEOUT_MESSAGE, view=None)
         except Exception as e:
             print(f"TimeOut <> An error occurred: {e}")
 
